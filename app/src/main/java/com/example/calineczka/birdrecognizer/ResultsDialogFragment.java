@@ -18,7 +18,7 @@ public class ResultsDialogFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        if(message!="")
+        if(!message.equals(""))
             builder.setMessage(message);
         else
             builder.setMessage(R.string.noMatches);
@@ -28,12 +28,7 @@ public class ResultsDialogFragment extends DialogFragment {
                 getFragment().onStart();
             }
         });
-        builder.setNegativeButton("Exit", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                getFragment().onDestroyView();
-            }
-        });
+        builder.setNegativeButton("Exit", null);
         return builder.create();
     }
     private MainActivityFragment getFragment(){

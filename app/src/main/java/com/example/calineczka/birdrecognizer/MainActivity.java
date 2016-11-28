@@ -15,8 +15,4 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
 }

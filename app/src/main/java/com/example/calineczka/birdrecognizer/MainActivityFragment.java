@@ -94,12 +94,11 @@ public class MainActivityFragment extends Fragment {
             results[totalAnswers] = index;
 
             totalAnswers++;
-            if(totalAnswers<NUMBER_OF_QUESTIONS) {
+            if(totalAnswers<NUMBER_OF_QUESTIONS)
                 updateFragment();
-               radioButton.setChecked(false);
-            }
             else
                 showResult();
+            radioButton.setChecked(false);
 
         }
     };
