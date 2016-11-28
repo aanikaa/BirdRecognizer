@@ -19,78 +19,34 @@
         android:layout_gravity="top|center_vertical"
         android:gravity="top|center_vertical" />
 
-    <LinearLayout
-        android:orientation="horizontal"
+    <RadioGroup
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:id="@+id/answersLinearLayout1">
+        android:layout_height="match_parent"
+        android:id="@+id/answerRadioGroup">
 
-        <Button
+        <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/answerButton1"
             android:clickable="true" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/answerTextView1"
-            android:layout_gravity="center_vertical" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/answersLinearLayout2">
-
-        <Button
+        <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/answerButton2"
             android:clickable="true" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/answerTextView2" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/answersLinearLayout3">
-
-        <Button
+        <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/answerButton3"
             android:clickable="true" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/answerTextView3" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/answersLinearLayout4">
-
-        <Button
+        <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/answerButton4"
             android:clickable="true" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/answerTextView4" />
-    </LinearLayout>
+    </RadioGroup>
 
 </LinearLayout>

@@ -5,8 +5,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -19,13 +20,9 @@ public class MainActivityFragment extends Fragment {
     final int NUMBER_OF_QUESTIONS = 5;
 
     LinearLayout fragmentLinearLayout;
-    LinearLayout[] answersLinearLayouts;
 
     TextView questionTextView;
-    TextView answerTextView1;
-    TextView answerTextView2;
-    TextView answerTextView3;
-    TextView answerTextView4;
+    RadioGroup radioGroup;
 
     Questionnaire questionnaire;
     BirdInventory birdInventory;
@@ -53,24 +50,10 @@ public class MainActivityFragment extends Fragment {
         fragmentLinearLayout = (LinearLayout) view.findViewById(R.id.fragmentLinearLayout);
         questionTextView = (TextView) view.findViewById(R.id.questionTextView);
 
-        answersLinearLayouts = new LinearLayout[4];
-        answersLinearLayouts[0] = (LinearLayout) view.findViewById(R.id.answersLinearLayout1);
-        answersLinearLayouts[1] = (LinearLayout) view.findViewById(R.id.answersLinearLayout2);
-        answersLinearLayouts[2] = (LinearLayout) view.findViewById(R.id.answersLinearLayout3);
-        answersLinearLayouts[3] = (LinearLayout) view.findViewById(R.id.answersLinearLayout4);
+        radioGroup = (RadioGroup) view.findViewById(R.id.answerRadioGroup);
 
-        answerTextView1 = (TextView) view.findViewById(R.id.answerTextView1);
-        answerTextView2 = (TextView) view.findViewById(R.id.answerTextView2);
-        answerTextView3 = (TextView) view.findViewById(R.id.answerTextView3);
-        answerTextView4 = (TextView) view.findViewById(R.id.answerTextView4);
+        radioGroup.setOnCheckedChangeListener(answerButtonListener);
 
-        int i=0;
-        for (LinearLayout row : answersLinearLayouts) {
-           Button answerButton = (Button) row.getChildAt(0);
-            answerButton.setOnClickListener(answerButtonListener);
-            answerButton.setText(String.valueOf(i));
-            i++;
-        }
 
 
         return view;
@@ -97,25 +80,27 @@ public class MainActivityFragment extends Fragment {
 
     void updateAnswers(int numberOfQuestion) {
         values = answers.get(numberOfQuestion);
-        answerTextView1.setText(values[0]);
-        answerTextView2.setText(values[1]);
-        answerTextView3.setText(values[2]);
-        answerTextView4.setText(values[3]);
+        ((RadioButton) radioGroup.getChildAt(0)).setText(values[0]);
+        ((RadioButton) radioGroup.getChildAt(1)).setText(values[1]);
+        ((RadioButton) radioGroup.getChildAt(2)).setText(values[2]);
+        ((RadioButton) radioGroup.getChildAt(3)).setText(values[3]);
     }
 
-    private View.OnClickListener answerButtonListener = new View.OnClickListener() {
-
+    private RadioGroup.OnCheckedChangeListener answerButtonListener = new RadioGroup.OnCheckedChangeListener() {
         @Override
-        public void onClick(View v) {
-            Button answerButton = ((Button) v);
-            int index = Integer.parseInt(answerButton.getText().toString());
+        public void onCheckedChanged(RadioGroup group, int checkedId) {
+            RadioButton radioButton = (RadioButton) radioGroup.findViewById(checkedId);
+            int index = radioGroup.indexOfChild(radioButton);
             results[totalAnswers] = index;
 
             totalAnswers++;
-            if(totalAnswers<NUMBER_OF_QUESTIONS)
+            if(totalAnswers<NUMBER_OF_QUESTIONS) {
                 updateFragment();
+               radioButton.setChecked(false);
+            }
             else
                 showResult();
+
         }
     };
 
